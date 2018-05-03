@@ -1,24 +1,35 @@
-# README
+# Eventbrite_like
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ce projet permet de créer des utilisateurs, d'utiliser leurs sessions pour créer des evenements.
+Nous avons 3 models : User, Event et EventAttendee.
 
-Things you may want to cover:
+La mise en page n'est pas travaillé du tout, mais j'ai essayé de faire en sorte que la navigation se fasse au mieux (avec des liens disponibles un peu partout).
 
-* Ruby version
+## Lancer le projet
+Pour lancer le projet, sur le terminal (dans le dossier concerne) :
+```
+bundle install --without production
+```
 
-* System dependencies
+```
+rails db:migrate
+```
 
-* Configuration
+```
+rails s
+```
 
-* Database creation
+Vous pouvez observer les pages dans 'localhost:3000'
 
-* Database initialization
+On y utilise les méthodes suivantes :
 
-* How to run the test suite
+* Associations : Belongs_to - Has_many
+* Resources : users, events
+* Controllers : log_in, current_user et log_out (dans SessionsHelper). Subscribe et invitation (dans eventsController)
 
-* Services (job queues, cache servers, search engines, etc.)
+Vous pouvez voir le projet sur heroku : 
 
-* Deployment instructions
+* https://ancient-sands-72725.herokuapp.com/
 
-* ...
+## CSS
+Le CSS est dans le assets/stylesheets/application.css
