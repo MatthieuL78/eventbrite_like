@@ -3,7 +3,7 @@
 Ce projet permet de créer des utilisateurs, d'utiliser leurs sessions pour créer des evenements.
 Nous avons 3 models : User, Event et EventAttendee.
 
-La mise en page n'est pas travaillé du tout, mais j'ai essayé de faire en sorte que la navigation se fasse au mieux (avec des liens disponibles un peu partout).
+J'ai essayé de faire en sorte que la navigation se fasse au mieux (avec des liens disponibles un peu partout).
 
 ## Presentation du projet
 * Inscription, connexion et deconnexion
@@ -30,6 +30,7 @@ On y utilise les méthodes suivantes :
 * Associations : Belongs_to - Has_many
 * Resources : users, events
 * Controllers : log_in, current_user et log_out (dans SessionsHelper). Subscribe et invitation (dans eventsController)
+* CSS : Bootstrap
 
 Vous pouvez voir le projet sur heroku : 
 
