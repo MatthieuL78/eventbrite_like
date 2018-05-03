@@ -1,0 +1,7 @@
+<h1>Events</h1>
+<%= form_for(@event) do |event_form| %>
+Description : <%= event_form.text_field :description %>
+Date : <%= event_form.date_field :datetime %>
+Place : <%= event_form.text_field :place %>
+<%= event_form.submit 'Creer un event' %>
+<% end %>

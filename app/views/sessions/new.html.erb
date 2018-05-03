@@ -1,0 +1,5 @@
+<h1>Sessions</h1>
+<%= form_for(:session, url: login_path) do |session_form| %>
+id: <%= session_form.text_field :id %>
+<%= session_form.submit 'Connexion' %>
+<% end %>

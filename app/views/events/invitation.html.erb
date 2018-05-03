@@ -1,0 +1,24 @@
+<h1>Events#invitation</h1>
+<p>Inviter la personne de votre choix : </p>
+<table class="table">
+	<tr>
+		<th>Nom</th>
+		<th>Inviter</th>
+	</tr>
+
+	<% User.all.each do |user| %>
+	<tr>
+		<th><%= user.name %></th>
+		<th><%= form_for(:session, url: subscribe_path(event.id)) do |session_form| %>
+				<% if event.attendees.include?(user) %>
+					<%= session_form.submit "Deja inscrit", disabled: true %>
+					<%= hidden_field(:user) %>
+				<% else %>
+					<%= session_form.submit "Inviter" %>
+				<% end %>
+			<% end %>
+		</th>
+	</tr>
+	<% end %>
+</table>
+

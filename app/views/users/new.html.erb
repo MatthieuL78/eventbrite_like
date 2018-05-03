@@ -1,0 +1,6 @@
+<h1>Users#new</h1>
+<p>Find me in app/views/users/new.html.erb</p>
+<%= form_for(@user) do |user_form| %>
+	Name : <%= user_form.text_field :name %>
+	<%= user_form.submit "Creer un compte"%>
+<% end %>

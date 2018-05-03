@@ -1,0 +1,17 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+	<div class="container-fluid">
+		<nav>
+			<ul class="nav navbar-nav navbar-right">
+				<li><%= link_to "Acceuil", root_path %></li>
+				<li><%= link_to "Index des events", events_path %></li>
+				<% if current_user.nil? %>
+					<li><%= link_to "Inscription", new_user_path %></li>
+					<li><%= link_to "Connexion", login_path %></li>
+				<% else %>
+					<li><%= link_to "Deconnexion", logout_path, method: :delete %></li>
+				<% end %>
+			</ul>
+		</nav>
+	</div>
+</header>
+
