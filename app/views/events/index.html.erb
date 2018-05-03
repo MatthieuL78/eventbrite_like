@@ -1,31 +1,38 @@
-<h1>Events#index</h1>
-<table class="table">
-	<tr>
-		<th>Place</th>
-		<th>Description</th>
-		<th>Date</th>
-		<th>Createur</th>
-		<th>Nombre de participant</th>
-		<th>Lien de la page</th>
-		<th>S'inscrire</th>
-	</tr>
-
-	<% @event.each do |event| %>
-	<tr>
-		<th><%= event.place %></th>
-		<th><%= event.description %></th>
-		<th><%= event.datetime %></th>
-		<th><%= User.find_by(id: event.creator_id).name %></th>
-		<th><%= event.attendees.count %></th>
-		<th><%= link_to "Voir l'event", event_path(event.id) %></th>
-		<th><%= form_for(:session, url: subscribe_path(event.id)) do |session_form| %>
-				<% if event.attendees.include?(current_user) %>
-					<%= session_form.submit "Deja inscrit", disabled: true %>
-				<% else %>
-					<%= session_form.submit "S'inscrire" %>
-				<% end %>
+<div class="jumbotron">
+	<h1>Liste des evenements</h1>
+	<table class="table">
+		<tr>
+			<th>Place</th>
+			<th>Description</th>
+			<th>Date</th>
+			<th>Createur</th>
+			<th>Nombre de participant</th>
+			<th>Lien de la page</th>
+			<% unless current_user.nil? %>
+				<th>Participer</th>
 			<% end %>
-		</th>
-	</tr>
-	<% end %>
-</table>
+		</tr>
+
+		<% @event.each do |event| %>
+		<tr>
+			<th><%= event.place %></th>
+			<th><%= event.description %></th>
+			<th><%= event.datetime %></th>
+			<th><%= User.find_by(id: event.creator_id).name %></th>
+			<th><%= event.attendees.count %></th>
+			<th><%= link_to "Voir l'event", event_path(event.id) %></th>
+			<% unless current_user.nil? %>
+				<th><%= form_for(:session, url: subscribe_path(event.id)) do |session_form| %>
+						<% if event.attendees.include?(current_user) %>
+							<%= session_form.submit "Deja inscrit", disabled: true %>
+						<% else %>
+							<%= session_form.submit "S'inscrire" %>
+						<% end %>
+					<% end %>
+				</th>
+			<% end %>
+			</tr>
+		</tr>
+		<% end %>
+	</table>
+</div>

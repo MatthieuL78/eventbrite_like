@@ -1,34 +1,42 @@
-<h1>Events : </h1>
-<p>Description : <%= @event.description %></p>
-<p>Place : <%= @event.place %></p>
-<p>Date : <%= @event.datetime %></p>
-<table class="table">
-	<tr>
-		<th>Participant</th>
-	</tr>
+<div class="jumbotron">
+	<h1>Events : </h1>
+	<p>Description : <%= @event.description %></p>
+	<p>Place : <%= @event.place %></p>
+	<p>Date : <%= @event.datetime %></p>
+	<table class="table">
+		<tr>
+			<th>Participant</th>
+		</tr>
 
-	<% @event.attendees.each do |attendee| %>
-	<tr>
-		<th><%= attendee.name %></th>
-	</tr>
-	<% end %>
-</table>
-<br>
-<table class="table">
-	<tr>
-		<th>Personnes invitables</th>
-		<th>Invitation</th>
-	</tr>
-
-	<% User.all.each do |user| %>
-	<tr>
-		<% unless @event.attendees.include?(user) || user == current_user %>
-			<th><%= user.name %></th>
-			<th><%= form_for(:session, url: invitation_path(@event.id,user.id)) do |session_form| %>
-					<%= session_form.submit "Inviter" %>
-				<% end %>
-			</th>
+		<% @event.attendees.each do |attendee| %>
+		<tr>
+			<th><%= attendee.name %></th>
+		</tr>
 		<% end %>
-	</tr>
-	<% end %>
-</table>
+	</table>
+	<br>
+	<table class="table">
+		<tr>
+			<% if current_user == User.find(@event.creator_id) %>
+				<th>Personnes non invités</th>
+				<th>Invitation</th>
+			<% else %>
+				<th>Personnes non invités</th>
+			<% end %>
+		</tr>
+
+		<% User.all.each do |user| %>
+		<tr>
+			<% unless @event.attendees.include?(user) || user == current_user %>
+				<th><%= user.name %></th>
+				<% if current_user == User.find(@event.creator_id) %>
+					<th><%= form_for(:session, url: invitation_path(@event.id,user.id)) do |session_form| %>
+							<%= session_form.submit "Inviter" %>
+						<% end %>
+					</th>
+				<% end %>
+			<% end %>
+		</tr>
+		<% end %>
+	</table>
+</div>

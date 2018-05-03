@@ -1,11 +1,8 @@
-<h1>Staticpages#home</h1>
-<p>Index des evenements : <%= link_to 'Index', events_path %></p>
-<% if current_user.nil? %>
-	<p>Creer un compte : <%= link_to 'Inscription', new_user_path %></p>
-	<p>Se connecter : <%= link_to 'Connexion', login_path %></p>
-<% else %>
-	<p>Se deconnecter :
-		<%= link_to 'Deconnexion', logout_path, method: :delete %>
-		<%= link_to 'Votre profile', user_path(@current_user.id) %> 
+<div class="jumbotron">
+	<h1>Acceuil</h1>
+	<p>
+	<% unless current_user.nil? %>
+		<%= link_to 'Votre profile', user_path(current_user.id) %> 
+	<% end %>
 	</p>
-<% end %>
+</div>

@@ -1,24 +1,25 @@
-<h1>User: <%= current_user.name %> </h1>
-<p>Revenir a l acceuil : <%= link_to 'Acceuil', root_path %></p>
-<p>Creer un evenement : <%= link_to 'Creer un event', new_event_path %></p>
-<p>Liste des evenements : 
+<div class="jumbotron">
+	<h1>User: <%= current_user.name %> </h1>
+	<p>Creer un evenement : <%= link_to 'Creer un event', new_event_path %></p>
+	<p>Liste des evenements : 
 
-	<table class="table">
-		<tr>
-			<th>Place</th>
-			<th>Description</th>
-			<th>Date</th>
-		</tr>
+		<table class="table">
+			<tr>
+				<th>Place</th>
+				<th>Description</th>
+				<th>Date</th>
+			</tr>
 
-		<% Event.all.each do |event| %>
-		<tr>
-			<% if event.creator_id == current_user.id %>
-			<th><%= event.place %></th>
-			<th><%= event.description %></th>
-			<th><%= event.datetime %></th>
-			<th><%= link_to "Page de l'evenement", event_path(event.id) %></th>
+			<% Event.all.each do |event| %>
+			<tr>
+				<% if event.creator_id == current_user.id %>
+				<th><%= event.place %></th>
+				<th><%= event.description %></th>
+				<th><%= event.datetime %></th>
+				<th><%= link_to "Page de l'evenement", event_path(event.id) %></th>
+				<% end %>
+			</tr>
 			<% end %>
-		</tr>
-		<% end %>
-	</table>
-</p>
+		</table>
+	</p>
+</div>
