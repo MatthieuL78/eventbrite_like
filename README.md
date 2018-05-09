@@ -32,9 +32,5 @@ On y utilise les méthodes suivantes :
 * Controllers : log_in, current_user et log_out (dans SessionsHelper). Subscribe et invitation (dans eventsController)
 * CSS : Bootstrap
 
-Vous pouvez voir le projet sur heroku : 
-
-* https://ancient-sands-72725.herokuapp.com/
-
 ## CSS
 Le CSS est dans le assets/stylesheets/application.css
